@@ -1,5 +1,6 @@
 "use client";
 
+import { updateDestinationById } from "@/lib/action";
 import {
   Button,
   FieldError,
@@ -30,18 +31,8 @@ const EditModal = ({ destination }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const destination = Object.fromEntries(formData.entries());
-    console.log(destination);
 
-    const res = await fetch(`http://localhost:5000/destination/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(destination),
-    });
-
-    const data = await res.json();
+    const data = await updateDestinationById(formData, _id);
 
     if (data.matchedCount > 0) {
       redirect(`/destinations/${_id}`);
