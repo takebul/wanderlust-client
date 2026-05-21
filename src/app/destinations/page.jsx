@@ -1,8 +1,11 @@
 import DestinationCard from "@/components/DestinationCard";
+import { cn } from "@heroui/styles";
 
 const DestinationPage = async () => {
   const res = await fetch("http://localhost:5000/destination");
   const destinations = await res.json();
+
+  console.log(destinations);
 
   return (
     <div>

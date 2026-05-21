@@ -1,3 +1,4 @@
+import BookingCard from "@/components/BookingCard";
 import DeleteAlert from "@/components/DeleteAlert";
 import EditModal from "@/components/EditModal";
 import { Button } from "@heroui/react";
@@ -36,23 +37,27 @@ const DestinationDetailsPage = async ({ params }) => {
         </div>
       </div>
       <Image alt={destinationName} src={imageUrl} height={500} width={800} />
-      <div className="flex items-center gap-1 mt-4">
-        <LuMapPin />
-        <p>{country}</p>
+
+      <div className="flex justify-between mt-8">
+        <div>
+          <div className="flex items-center gap-1 mt-4">
+            <LuMapPin />
+            <p>{country}</p>
+          </div>
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-bold">{destinationName}</h2>
+          </div>
+          <div className="flex gap-2 items-center">
+            <FaRegCalendar />
+            {duration}
+          </div>
+          <h1 className="mt-7 text-2xl font-bold">Overview</h1>
+          <p>{description}</p>
+        </div>
+        <div>
+          <BookingCard destination={destination} />
+        </div>
       </div>
-      <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold">{destinationName}</h2>
-        <p>
-          <span className="text-lg font-semibold">${price}/</span>
-          <span className="text-sm">Person</span>
-        </p>
-      </div>
-      <div className="flex gap-2 items-center">
-        <FaRegCalendar />
-        {duration}
-      </div>
-      <h1 className="mt-10 text-2xl font-bold">Overview</h1>
-      <p>{description}</p>
     </div>
   );
 };

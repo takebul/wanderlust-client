@@ -12,5 +12,7 @@ export const updateDestinationById = async (formData, id) => {
 
   const data = await res.json();
 
+  console.log(data);
+
   return data;
 };
