@@ -67,6 +67,7 @@ const Navbar = () => {
                 <Button
                   onClick={handleLogOut}
                   variant="danger"
+                  size="sm"
                   className={"rounded-xs"}
                 >
                   Logout

@@ -7,6 +7,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const BookingCard = ({ destination }) => {
   const { data: session } = authClient.useSession();
+
   const user = session?.user;
 
   const [departureDate, setDepartureDate] = useState(null);
@@ -26,10 +27,14 @@ const BookingCard = ({ destination }) => {
       departureDate: new Date(departureDate),
     };
 
-    const res = await fetch(`http://localhost:5000/booking`, {
+    const { data: tokenData } = await authClient.token();
+    console.log(tokenData);
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(bookingData),
     });
